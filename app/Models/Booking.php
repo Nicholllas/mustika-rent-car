@@ -27,8 +27,8 @@ class Booking extends Model
     ];
 
     protected $dates = [
-        'start_date',
-        'end_date',
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
     ];
 
     public function item ()

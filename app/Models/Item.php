@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Item extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
 
     protected $fillable = [
@@ -22,6 +21,10 @@ class Item extends Model
         'price',
         'star',
         'review',
+    ];
+
+    protected $casts = [
+        'photos' => 'array'
     ];
 
     public function brand() {
