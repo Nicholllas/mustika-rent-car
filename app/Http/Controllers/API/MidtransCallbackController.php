@@ -32,7 +32,7 @@ class MidtransCallbackController extends Controller
 
     // Handle notification status midtrans
     if ($status == 'capture') {
-    if ($type == 'credit_card') {
+    if ($type == ['credit_card','bank_transfer']) {
     if ($fraud == 'challenge') {
     $booking->payment_status = 'pending';
     } else {

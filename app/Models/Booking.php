@@ -31,6 +31,11 @@ class Booking extends Model
         'end_date' => 'datetime',
     ];
 
+    protected $casts = [
+    'start_date'  => 'date:Y-m-d',
+    'end_date' => 'date:Y-m-d',
+];
+
     public function item ()
     {
         return $this->belongsTo(Item::class);

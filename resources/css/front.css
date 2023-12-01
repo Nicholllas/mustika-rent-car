@@ -77,3 +77,8 @@
 [x-cloak] {
     display: none;
 }
+
+.custom-image {
+    width: 50px;
+    object-fit: cover;
+}
