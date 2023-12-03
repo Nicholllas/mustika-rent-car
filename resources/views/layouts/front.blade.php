@@ -58,8 +58,8 @@
                         class="flex flex-col items-baseline gap-4 mt-6 lg:justify-between lg:flex-row lg:items-center lg:mt-0">
                         <div
                             class="flex flex-col w-full ml-auto lg:w-auto gap-4 lg:gap-[50px] lg:items-center lg:flex-row">
-                            <a href="#!" class="nav-link-item">Beranda</a>
-                            <a href="#!" class="nav-link-item">Katalog</a>
+                            <a href="{{ route('front.index') }}" class="nav-link-item">Beranda</a>
+                            <a href="{{ route('front.catalogue') }}" class="nav-link-item">Katalog</a>
                             <a href="#!" class="nav-link-item">Benefit</a>
                             <a href="#!" class="nav-link-item">Testimoni</a>
                             <a href="#!" class="nav-link-item">Peta</a>

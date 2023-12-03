@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\TypeController as AdminTypeController;
 use App\Http\Controllers\Admin\BrandController as AdminBrandController;
 use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Front\CatalogueController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 Route::name('front.')->group(function (){
     Route::get('/', [LandingController::class, 'index'])->name('index');
+    Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue');
     Route::get('/detail/{slug}', [DetailController::class, 'index'])->name('detail');
     Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 

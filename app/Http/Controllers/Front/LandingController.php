@@ -14,7 +14,6 @@ class LandingController extends Controller
 
         return view('landing', [
             'items' => $items
-
         ]);
     }
 
