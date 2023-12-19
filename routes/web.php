@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\TypeController as AdminTypeController;
 use App\Http\Controllers\Admin\BrandController as AdminBrandController;
 use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\VariantController as AdminVariantController;
 use App\Http\Controllers\Front\CatalogueController;
 
 /*
@@ -48,6 +49,7 @@ Route::prefix('admin')->name('admin.')->middleware([
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::resource('brands', AdminBrandController::class);
     Route::resource('types', AdminTypeController::class);
+    Route::resource('variants', AdminVariantController::class);
     Route::resource('items', AdminItemController::class);
     Route::resource('bookings', AdminBookingController::class);
 });

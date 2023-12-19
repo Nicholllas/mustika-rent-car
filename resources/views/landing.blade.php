@@ -104,9 +104,9 @@
                             alt="">
                         <div class="flex items-center justify-between gap-1">
                             <!-- Price -->
-                            <p class="text-sm font-normal text-secondary">
+                            <p class="text-sm font-normal text-secondary">Mulai dari
                                 <span
-                                    class="text-base font-bold text-primary">Rp{{ number_format($item->price, 0, ',', '.') }}</span>/day
+                                    class="text-base font-bold text-primary">Rp{{ number_format($item->price, 0, ',', '.') }}</span>/hari
                             </p>
                             <!-- Rating -->
                             <p class="text-dark text-xs font-semibold flex items-center gap-[2px]">
@@ -181,7 +181,7 @@
                     <div class="p-1 rounded-full bg-primary group">
                         <a href="#!" class="btn-primary">
                             <p>
-                                Explore Cars
+                                Jelajahi Mobil
                             </p>
                             <img src="../assets/svgs/ic-arrow-right.svg" alt="">
                         </a>
@@ -237,7 +237,7 @@
                 <div class="p-1 rounded-full bg-primary group w-max">
                     <a href="#" class="btn-primary">
                         <p>
-                            Book Now
+                            Pesan Sekarang
                         </p>
                         <img src="../assets/svgs/ic-arrow-right.svg" alt="">
                     </a>

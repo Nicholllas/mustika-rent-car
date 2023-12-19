@@ -11,6 +11,7 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\ItemRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ItemUpdateRequest;
+use App\Models\Variant;
 
 class ItemController extends Controller
 {
@@ -20,7 +21,7 @@ class ItemController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Item::with(['brand','type']);
+            $query = Item::with(['brand','type','variant']);
 
             return DataTables::of($query)
                 ->editColumn('thumbnail', function ($item) {
@@ -53,8 +54,9 @@ class ItemController extends Controller
     {
         $brands = Brand::all();
         $types = Type::all();
+        $variants = Variant::all();
 
-        return view('admin.items.create', compact('brands', 'types'));
+        return view('admin.items.create', compact('brands', 'types','variants'));
     }
 
     /**
@@ -99,9 +101,10 @@ class ItemController extends Controller
     {
         $brands = Brand::all();
         $types = Type::all();
+        $variants = Variant::all();
         $item->load('brand','type');
 
-        return view('admin.items.edit', compact('item','brands','types'));
+        return view('admin.items.edit', compact('item','brands','types','variants'));
     }
 
     /**

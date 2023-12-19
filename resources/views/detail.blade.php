@@ -75,6 +75,21 @@
                                     </li>
                                 @endforeach
                             </ul>
+
+                            <div class="pt-5">
+                                <label class="text-base font-semibold text-dark">Service Tambahan</label>
+                                <div class="flex gap-4">
+                                    @foreach ($variant as $v)
+                                        <div>
+                                            <input type="checkbox" id="variant_{{ $v->id }}"
+                                                class="variant-checkbox">
+                                            <label for="variant_{{ $v->id }}"
+                                                class="text-base text-dark">{{ $v->name }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
                             <!-- Price, CTA Button -->
                             <div class="flex items-center justify-between gap-4 pt-5 mt-auto">
                                 <div>

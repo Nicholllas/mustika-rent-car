@@ -42,6 +42,10 @@ class Item extends Model
         return $this->belongsTo(Brand::class);
     }
 
+    public function variant() {
+        return $this->belongsTo(Variant::class);
+    }
+
     public function type() {
         return $this->belongsTo(Type::class);
     }
