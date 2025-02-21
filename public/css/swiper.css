@@ -1,0 +1,8 @@
+.no-scrollbar {
+    scrollbar-width: none; /* Untuk Firefox */
+    -ms-overflow-style: none; /* Untuk Internet Explorer dan Edge */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none; /* Untuk Chrome, Safari, dan Opera */
+}
