@@ -70,7 +70,7 @@
                             <a href="{{ route('front.catalogue') }}" class="nav-link-item">Katalog</a>
                             <a href="#!" class="nav-link-item">Testimoni</a>
                             <a href="#!" class="nav-link-item">Contact Us</a>
-                            <a href="{{ route('front.map') }}" class="nav-link-item">Peta</a>
+                            <a href="#!" class="nav-link-item">Peta</a>
                         </div>
                         @auth
                             <div class="flex flex-col w-full ml-auto lg:w-auto lg:gap-12 lg:items-center lg:flex-row">
@@ -100,7 +100,7 @@
     </main>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         AOS.init({
