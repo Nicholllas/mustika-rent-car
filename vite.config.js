@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import laravel, { refreshPaths } from "laravel-vite-plugin";
+import laravel from "laravel-vite-plugin";
 
 export default defineConfig({
     plugins: [
@@ -9,14 +9,17 @@ export default defineConfig({
                 "resources/css/front.css",
                 "resources/js/app.js",
             ],
-            refresh: [...refreshPaths, "app/Livewire/**"],
+            refresh: true,
         }),
     ],
-    server: {
-        host: "0.0.0.0",
-        hmr: {
-            host: "mustika-rent-car-production.up.railway.app",
-            protocol: "wss",
+    build: {
+        manifest: true,
+        outDir: "public/build",
+        rollupOptions: {
+            input: {
+                app: "resources/js/app.js",
+                front: "resources/css/front.css",
+            },
         },
     },
 });
