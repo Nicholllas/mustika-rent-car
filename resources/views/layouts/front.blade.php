@@ -15,11 +15,19 @@
     {{-- favicon --}}
     <link rel="icon" sizes="any" href="{{ url('/assets/favicon/favicon-32x32.png') }}">
 
+    <!-- load swiper -->
+    <link rel="stylesheet" sizes="any" href="{{ url('/css/swiper.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+
     <!-- Libraries -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script defer src="https://unpkg.com/alpinejs@3.7.0/dist/cdn.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 
     <!-- Scripts -->
     @vite(['resources/css/front.css'])
@@ -60,9 +68,9 @@
                             class="flex flex-col w-full ml-auto lg:w-auto gap-4 lg:gap-[50px] lg:items-center lg:flex-row">
                             <a href="{{ route('front.index') }}" class="nav-link-item">Beranda</a>
                             <a href="{{ route('front.catalogue') }}" class="nav-link-item">Katalog</a>
-                            <a href="#!" class="nav-link-item">Benefit</a>
                             <a href="#!" class="nav-link-item">Testimoni</a>
-                            <a href="#!" class="nav-link-item">Peta</a>
+                            <a href="#!" class="nav-link-item">Contact Us</a>
+                            <a href="{{ route('front.map') }}" class="nav-link-item">Peta</a>
                         </div>
                         @auth
                             <div class="flex flex-col w-full ml-auto lg:w-auto lg:gap-12 lg:items-center lg:flex-row">
@@ -92,6 +100,8 @@
     </main>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         AOS.init({
             once: true,
@@ -99,8 +109,22 @@
             easing: 'ease-out'
         });
     </script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+        });
+    </script>
 
     <script src="{{ url('js/script.js') }}"></script>
+    <script src="{{ url('js/faqs.js') }}"></script>
 
 </body>
 
