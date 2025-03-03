@@ -13,18 +13,13 @@ export default defineConfig({
         }),
     ],
     build: {
-        manifest: true,
+        manifest: true, // Tambahkan ini untuk produksi
         outDir: "public/build",
         rollupOptions: {
             input: {
                 app: "resources/js/app.js",
                 front: "resources/css/front.css",
             },
-        },
-    },
-    server: {
-        hmr: {
-            host: "mustika-rent-car-production.up.railway.app",
         },
     },
 });
