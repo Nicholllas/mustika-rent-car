@@ -137,38 +137,19 @@
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
                         <!-- Testimoni 1 -->
-                        <div class="swiper-slide flex flex-col justify-center items-center h-[400px]"> <!-- Atur tinggi swiper-slide -->
-                            <img src="https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg" alt="User" class="w-16 h-16 mx-auto rounded-full mb-4">
-                            <h5 class="text-lg font-bold text-primary">Neil McCarthy</h5>
-                            <p class="text-sm text-gray-600 mt-2">
-                                "We found that they were invaluable to kickstart our web app and quickly get us to a customer-ready product."
-                            </p>
-                            <div class="flex justify-center mt-4">
-                                <span class="text-yellow-500">★★★★★</span>
+                        @foreach ($testimoni as $t)
+                            <div class="swiper-slide flex flex-col justify-center items-center h-[400px] bg-white shadow-lg p-6 rounded-lg">
+                                <img src="{{ $t->foto ?? 'https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg' }}" 
+                                    alt="{{ $t->nama }}" class="w-16 h-16 mx-auto rounded-full mb-4">
+                                <h5 class="text-lg font-bold text-primary">{{ $t->nama }}</h5>
+                                <p class="text-sm text-gray-600 mt-2">"{{ $t->pesan }}"</p>
+                                <div class="flex justify-center mt-4 text-yellow-500">
+                                    @for ($i = 0; $i < $t->rating; $i++)
+                                        ★
+                                    @endfor
+                                </div>
                             </div>
-                        </div>
-                        <!-- Testimoni 2 -->
-                        <div class="swiper-slide flex flex-col justify-center items-center h-[400px]">
-                            <img src="https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg" alt="User" class="w-16 h-16 mx-auto rounded-full mb-4">
-                            <h5 class="text-lg font-bold text-primary">Sarah Johnson</h5>
-                            <p class="text-sm text-gray-600 mt-2">
-                                "Great experience! The team was highly professional and met all our expectations."
-                            </p>
-                            <div class="flex justify-center mt-4">
-                                <span class="text-yellow-500">★★★★★</span>
-                            </div>
-                        </div>
-                        <!-- Testimoni 3 -->
-                        <div class="swiper-slide flex flex-col justify-center items-center h-[400px]">
-                            <img src="https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg" alt="User" class="w-16 h-16 mx-auto rounded-full mb-4">
-                            <h5 class="text-lg font-bold text-primary">Michael Brown</h5>
-                            <p class="text-sm text-gray-600 mt-2">
-                                "Exceptional service and fast response time. Highly recommended!"
-                            </p>
-                            <div class="flex justify-center mt-4">
-                                <span class="text-yellow-500">★★★★★</span>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <!-- Navigasi Swiper dengan posisi fixed di bawah -->
@@ -388,84 +369,19 @@
 
         <!-- Manual Horizontal Scroll tanpa scrollbar -->
         <div class="flex overflow-x-auto space-x-4 p-4 no-scrollbar">
+        @foreach ($faqs as $faq)
             <div class="px-6 py-4 border rounded-[24px] border-grey min-w-[300px]">
                 <div class="flex items-center justify-between gap-1">
-                    <p class="text-base font-semibold text-dark">What if I crash the car?</p>
+                    <p class="text-base font-semibold text-dark">{{ $faq->question }}</p>
                     <img src="../assets/svgs/ic-chevron-down-rounded.svg" class="transition-all" alt="">
                 </div>
                 <div class="hidden pt-4 max-w-[335px]">
                     <p class="text-base text-dark leading-[26px]">
-                        Ipsum top talent busy making race that agreed both party. You can si amet lorem
-                        dolor get the rewards after winning.
+                        {{ $faq->answer }}
                     </p>
                 </div>
             </div>
-            <div class="px-6 py-4 border rounded-[24px] border-grey min-w-[300px]">
-                <div class="flex items-center justify-between gap-1">
-                    <p class="text-base font-semibold text-dark">Can I extend my rental period?</p>
-                    <img src="../assets/svgs/ic-chevron-down-rounded.svg" class="transition-all" alt="">
-                </div>
-                <div class="hidden pt-4 max-w-[335px]">
-                    <p class="text-base text-dark leading-[26px]">
-                        You can extend your rental by contacting customer support at least 24 hours in advance.
-                    </p>
-                </div>
-            </div>
-            <div class="px-6 py-4 border rounded-[24px] border-grey min-w-[300px]">
-                <div class="flex items-center justify-between gap-1">
-                    <p class="text-base font-semibold text-dark">Can I extend my rental period?</p>
-                    <img src="../assets/svgs/ic-chevron-down-rounded.svg" class="transition-all" alt="">
-                </div>
-                <div class="hidden pt-4 max-w-[335px]">
-                    <p class="text-base text-dark leading-[26px]">
-                        You can extend your rental by contacting customer support at least 24 hours in advance.
-                    </p>
-                </div>
-            </div>
-            <div class="px-6 py-4 border rounded-[24px] border-grey min-w-[300px]">
-                <div class="flex items-center justify-between gap-1">
-                    <p class="text-base font-semibold text-dark">Can I extend my rental period?</p>
-                    <img src="../assets/svgs/ic-chevron-down-rounded.svg" class="transition-all" alt="">
-                </div>
-                <div class="hidden pt-4 max-w-[335px]">
-                    <p class="text-base text-dark leading-[26px]">
-                        You can extend your rental by contacting customer support at least 24 hours in advance.
-                    </p>
-                </div>
-            </div>
-            <div class="px-6 py-4 border rounded-[24px] border-grey min-w-[300px]">
-                <div class="flex items-center justify-between gap-1">
-                    <p class="text-base font-semibold text-dark">Can I extend my rental period?</p>
-                    <img src="../assets/svgs/ic-chevron-down-rounded.svg" class="transition-all" alt="">
-                </div>
-                <div class="hidden pt-4 max-w-[335px]">
-                    <p class="text-base text-dark leading-[26px]">
-                        You can extend your rental by contacting customer support at least 24 hours in advance.
-                    </p>
-                </div>
-            </div>
-            <div class="px-6 py-4 border rounded-[24px] border-grey min-w-[300px]">
-                <div class="flex items-center justify-between gap-1">
-                    <p class="text-base font-semibold text-dark">Can I extend my rental period?</p>
-                    <img src="../assets/svgs/ic-chevron-down-rounded.svg" class="transition-all" alt="">
-                </div>
-                <div class="hidden pt-4 max-w-[335px]">
-                    <p class="text-base text-dark leading-[26px]">
-                        You can extend your rental by contacting customer support at least 24 hours in advance.
-                    </p>
-                </div>
-            </div>
-            <div class="px-6 py-4 border rounded-[24px] border-grey min-w-[300px]">
-                <div class="flex items-center justify-between gap-1">
-                    <p class="text-base font-semibold text-dark">Can I extend my rental period?</p>
-                    <img src="../assets/svgs/ic-chevron-down-rounded.svg" class="transition-all" alt="">
-                </div>
-                <div class="hidden pt-4 max-w-[335px]">
-                    <p class="text-base text-dark leading-[26px]">
-                        You can extend your rental by contacting customer support at least 24 hours in advance.
-                    </p>
-                </div>
-            </div>
+        @endforeach
             <!-- Tambahkan item lainnya sesuai kebutuhan -->
         </div>
     </section>
