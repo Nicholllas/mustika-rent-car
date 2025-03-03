@@ -12,4 +12,10 @@ export default defineConfig({
             refresh: [...refreshPaths, "app/Livewire/**"],
         }),
     ],
+    server: {
+        host: "0.0.0.0",
+        hmr: {
+            host: process.env.VITE_APP_URL?.replace("https://", ""),
+        },
+    },
 });
