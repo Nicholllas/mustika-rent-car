@@ -22,9 +22,4 @@ export default defineConfig({
             },
         },
     },
-    server: {
-        hmr: {
-            host: "mustika-rent-car-production.up.railway.app",
-        },
-    },
 });
