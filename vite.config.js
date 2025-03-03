@@ -13,7 +13,7 @@ export default defineConfig({
         }),
     ],
     build: {
-        manifest: true, // Tambahkan ini untuk produksi
+        manifest: true, 
         outDir: "public/build",
         rollupOptions: {
             input: {
@@ -22,4 +22,5 @@ export default defineConfig({
             },
         },
     },
+    base: "/", 
 });
