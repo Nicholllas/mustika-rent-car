@@ -12,4 +12,14 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    server: {
+        strictPort: true,
+        hmr: {
+            host: process.env.APP_URL ? new URL(process.env.APP_URL).hostname : "localhost",
+        },
+    },
+    build: {
+        outDir: "public/build",
+        manifest: true, // Agar Laravel bisa menemukan file yang dibuild
+    },
 });
