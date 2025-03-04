@@ -194,7 +194,7 @@
         </div>
     </section>
 
-    <script src="https://unpkg.com/vue@next/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
         const {
             createApp
