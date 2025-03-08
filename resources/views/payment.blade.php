@@ -4,9 +4,9 @@
         <div class="container">
             <header class="mb-[30px]">
                 <h2 class="font-bold text-dark text-[26px] mb-1">
-                    Checkout & Drive Faster
+                    Siap Berangkat? Lanjutkan Pembayaran!
                 </h2>
-                <p class="text-base text-secondary">We will help you get ready today</p>
+                <p class="text-base text-secondary">Silakan lakukan pembayaran sesuai dengan total yang tertera.</p>
             </header>
 
             <div class="flex items-center gap-5 lg:justify-between">
@@ -18,12 +18,12 @@
                     <div class="flex flex-col gap-[30px]">
                         <div class="flex flex-col gap-4">
                             <h5 class="text-lg font-semibold">
-                                Review Order
+                                Ringkasan Pesanan
                             </h5>
                             <!-- Items -->
                             <div class="flex items-center justify-between">
                                 <p class="text-base font-normal">
-                                    Car choosen
+                                    Mobil yang Dipilih
                                 </p>
                                 <p class="text-base font-semibold">
                                     {{ $booking->item->brand->name }} {{ $booking->item->name }}
@@ -32,43 +32,43 @@
                             <!-- Items -->
                             <div class="flex items-center justify-between">
                                 <p class="text-base font-normal">
-                                    Total day
+                                    Durasi
                                 </p>
                                 <p class="text-base font-semibold">
-                                    {{ $booking->start_date->diffInDays($booking->end_date) }} days
+                                    {{ $booking->start_date->diffInDays($booking->end_date) }} hari
                                 </p>
                             </div>
                             <!-- Items -->
                             <div class="flex items-center justify-between">
                                 <p class="text-base font-normal">
-                                    Service
+                                    Layanan
                                 </p>
                                 <p class="text-base font-semibold">
-                                    Delivery
+                                    Pengantaran
                                 </p>
                             </div>
                             <!-- Items -->
                             <div class="flex items-center justify-between">
                                 <p class="text-base font-normal">
-                                    Price
+                                    Harga
                                 </p>
                                 <p class="text-base font-semibold">
-                                    Rp{{ number_format($booking->item->price, 0, ',', '.') }} per day
+                                    Rp{{ number_format($booking->item->price, 0, ',', '.') }} per hari
                                 </p>
                             </div>
                             <!-- Items -->
                             <div class="flex items-center justify-between">
                                 <p class="text-base font-normal">
-                                    VAT (10%)
+                                    PPN (11%)
                                 </p>
                                 <p class="text-base font-semibold">
-                                    Rp{{ number_format($booking->item->price * $booking->start_date->diffInDays($booking->end_date) * (10 / 100), 0, ',', '.') }}
+                                    Rp{{ number_format($booking->item->price * $booking->start_date->diffInDays($booking->end_date) * (11 / 100), 0, ',', '.') }}
                                 </p>
                             </div>
                             <!-- Items -->
                             <div class="flex items-center justify-between">
                                 <p class="text-base font-normal">
-                                    Grand total
+                                    Total Pembayaran
                                 </p>
                                 <p class="text-base font-semibold">
                                     Rp{{ number_format($booking->total_price, 0, ',', '.') }}
@@ -77,7 +77,7 @@
                         </div>
                         <div class="flex flex-col gap-4">
                             <h5 class="text-lg font-semibold">
-                                Payment Method
+                                Metode Pembayaran
                             </h5>
                             <div class="grid md:grid-cols-2 gap-4 md:gap-[30px] items-center">
                                 <div class="relative boxPayment opacity-30">
@@ -87,7 +87,7 @@
                                         class="flex items-center justify-center gap-4 border border-grey rounded-[20px] p-5 min-h-[80px]">
                                         <img src="/svgs/logo-mastercard.svg" alt="">
                                         <p class="text-base font-semibold">
-                                            MasterCard
+                                            MANDIRI
                                         </p>
                                     </label>
                                 </div>
@@ -110,7 +110,7 @@
                             <div class="p-1 rounded-full bg-primary group">
                                 <a href="#!" class="btn-primary" id="checkoutButton">
                                     <p>
-                                        Continue
+                                        Lanjutkan
                                     </p>
                                     <img src="/svgs/ic-arrow-right.svg" alt="">
                                 </a>

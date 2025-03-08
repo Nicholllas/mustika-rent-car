@@ -68,9 +68,9 @@
                             class="flex flex-col w-full ml-auto lg:w-auto gap-4 lg:gap-[50px] lg:items-center lg:flex-row">
                             <a href="{{ route('front.index') }}" class="nav-link-item">Beranda</a>
                             <a href="{{ route('front.catalogue') }}" class="nav-link-item">Katalog</a>
-                            <a href="#!" class="nav-link-item">Testimoni</a>
-                            <a href="#!" class="nav-link-item">Contact Us</a>
-                            <a href="#!" class="nav-link-item">Peta</a>
+                            {{-- <a href="#!" class="nav-link-item">Testimoni</a> --}}
+                            {{-- <a href="#!" class="nav-link-item">Contact Us</a> --}}
+                            {{-- <a href="#!" class="nav-link-item">Peta</a> --}}
                         </div>
                         @auth
                             <div class="flex flex-col w-full ml-auto lg:w-auto lg:gap-12 lg:items-center lg:flex-row">

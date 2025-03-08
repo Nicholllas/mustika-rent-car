@@ -68,7 +68,7 @@
                 <div class="p-1 rounded-full bg-primary group" data-aos="zoom-in" data-aos-delay="3400">
                     <a href="checkout.html" class="btn-primary">
                         <p>
-                            Rent Now
+                            Sewa Sekarang
                         </p>
                         <img src="../assets/svgs/ic-arrow-right.svg" alt="">
                     </a>
@@ -130,7 +130,7 @@
                 </h2>
             </header>
         </div>
-        
+
         <div class="flex flex-col md:flex-row flex-wrap justify-center gap-8 lg:gap-[120px]">
             <!-- Testimoni Section (Swiper) -->
             <div class="max-w-[400px] w-full bg-white shadow-lg rounded-xl p-6 text-center relative">
@@ -138,11 +138,12 @@
                     <div class="swiper-wrapper">
                         <!-- Testimoni 1 -->
                         @foreach ($testimoni as $t)
-                            <div class="swiper-slide flex flex-col justify-center items-center h-[400px] bg-white shadow-lg p-6 rounded-lg">
-                                <img src="{{ $t->foto ?? 'https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg' }}" 
-                                    alt="{{ $t->nama }}" class="w-16 h-16 mx-auto rounded-full mb-4">
+                            <div
+                                class="swiper-slide flex flex-col justify-center items-center h-[400px] bg-white shadow-lg p-6 rounded-lg">
+                                <img src="{{ $t->foto ?? 'https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg' }}"
+                                    alt="{{ $t->nama }}" class="w-16 h-16 mx-auto mb-4 rounded-full">
                                 <h5 class="text-lg font-bold text-primary">{{ $t->nama }}</h5>
-                                <p class="text-sm text-gray-600 mt-2">"{{ $t->pesan }}"</p>
+                                <p class="mt-2 text-sm text-gray-600">"{{ $t->pesan }}"</p>
                                 <div class="flex justify-center mt-4 text-yellow-500">
                                     @for ($i = 0; $i < $t->rating; $i++)
                                         ★
@@ -153,21 +154,22 @@
                     </div>
                 </div>
                 <!-- Navigasi Swiper dengan posisi fixed di bawah -->
-                <div class="swiper-pagination absolute bottom-0 w-full flex justify-center py-4"></div>
+                <div class="absolute bottom-0 flex justify-center w-full py-4 swiper-pagination"></div>
             </div>
 
             <!-- Benefits Section -->
             <div class="max-w-[268px] w-full">
                 <div class="flex flex-col gap-[30px]">
-                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-4">
                         <div class="bg-dark rounded-[26px] p-[19px]">
                             <img src="/svgs/ic-car.svg" alt="">
                         </div>
                         <div>
                             <h5 class="text-lg text-dark font-bold mb-[2px]">
-                                Delivery
+                                Pengantaran Mudah
                             </h5>
-                            <p class="text-sm font-normal text-secondary">Just sit tight and wait</p>
+                            <p class="text-sm font-normal text-secondary">Mobil diantar langsung ke lokasi Anda. Pesan
+                                sekarang, nikmati perjalanan tanpa repot!</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
@@ -176,9 +178,10 @@
                         </div>
                         <div>
                             <h5 class="text-lg text-dark font-bold mb-[2px]">
-                                Pricing
+                                Harga Terbaik
                             </h5>
-                            <p class="text-sm font-normal text-secondary">12x Pay Installment</p>
+                            <p class="text-sm font-normal text-secondary">Dapatkan mobil impian dengan harga transparan
+                                dan tanpa biaya tersembunyi!</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
@@ -187,9 +190,10 @@
                         </div>
                         <div>
                             <h5 class="text-lg text-dark font-bold mb-[2px]">
-                                Secure
+                                Aman & Terpercaya
                             </h5>
-                            <p class="text-sm font-normal text-secondary">Use your plate number</p>
+                            <p class="text-sm font-normal text-secondary">Kendaraan terawat, layanan profesional, dan
+                                transaksi tanpa khawatir!</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
@@ -198,9 +202,10 @@
                         </div>
                         <div>
                             <h5 class="text-lg text-dark font-bold mb-[2px]">
-                                Fast Trade
+                                Proses Cepat
                             </h5>
-                            <p class="text-sm font-normal text-secondary">Change car faster</p>
+                            <p class="text-sm font-normal text-secondary">Pesan dalam hitungan menit, mobil siap
+                                digunakan kapan saja!</p>
                         </div>
                     </div>
                 </div>
@@ -208,15 +213,18 @@
                 <div class="mt-[50px]">
                     <div class="inline-block p-1 rounded-full bg-primary group">
                         <a href="#" class="relative flex items-center justify-center space-x-2 btn-primary">
-                            <p class="transition-all duration-[320ms] translate-x-0 group-hover:-translate-x-3 text-center">
-                                Explore Cars
+                            <p
+                                class="transition-all duration-[320ms] translate-x-0 group-hover:-translate-x-3 text-center">
+                                Jelajahi Mobil
                             </p>
-                            <img src="/svgs/ic-arrow-right.svg" class="transition-all duration-[320ms] opacity-0 group-hover:opacity-100 group-hover:translate-x-0" alt="">
+                            <img src="/svgs/ic-arrow-right.svg"
+                                class="transition-all duration-[320ms] opacity-0 group-hover:opacity-100 group-hover:translate-x-0"
+                                alt="">
                         </a>
                     </div>
                 </div>
-                </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -368,20 +376,20 @@
         </header>
 
         <!-- Manual Horizontal Scroll tanpa scrollbar -->
-        <div class="flex overflow-x-auto space-x-4 p-4 no-scrollbar">
-        @foreach ($faqs as $faq)
-            <div class="px-6 py-4 border rounded-[24px] border-grey min-w-[300px]">
-                <div class="flex items-center justify-between gap-1">
-                    <p class="text-base font-semibold text-dark">{{ $faq->question }}</p>
-                    <img src="../assets/svgs/ic-chevron-down-rounded.svg" class="transition-all" alt="">
+        <div class="flex p-4 space-x-4 overflow-x-auto no-scrollbar">
+            @foreach ($faqs as $faq)
+                <div class="px-6 py-4 border rounded-[24px] border-grey min-w-[300px]">
+                    <div class="flex items-center justify-between gap-1">
+                        <p class="text-base font-semibold text-dark">{{ $faq->question }}</p>
+                        <img src="../assets/svgs/ic-chevron-down-rounded.svg" class="transition-all" alt="">
+                    </div>
+                    <div class="hidden pt-4 max-w-[335px]">
+                        <p class="text-base text-dark leading-[26px]">
+                            {!! $faq->answer !!}
+                        </p>
+                    </div>
                 </div>
-                <div class="hidden pt-4 max-w-[335px]">
-                    <p class="text-base text-dark leading-[26px]">
-                        {{ $faq->answer }}
-                    </p>
-                </div>
-            </div>
-        @endforeach
+            @endforeach
             <!-- Tambahkan item lainnya sesuai kebutuhan -->
         </div>
     </section>
@@ -392,11 +400,11 @@
             <div class="flex flex-col">
                 <header class="mb-[50px] max-w-[360px] w-full">
                     <h2 class="font-bold text-white text-[25px] mb-4">
-                        Mobil Nyaman Harga Bersahabat<br>
-                        Perjalanan Tanpa Khawatir Dimulai Dari Sini
+                        Mobil Nyaman, Harga Terbaik <br>
+                        Perjalanan Bebas Khawatir Dimulai di Sini!
                     </h2>
-                    <p class="text-base text-subtlePars">Get an instant booking to catch up whatever your
-                        really want to achieve today, yes.</p>
+                    <p class="text-base text-subtlePars">Nikmati pemesanan instan dan wujudkan perjalanan impian Anda
+                        dengan mudah.</p>
                 </header>
                 <!-- Button Primary -->
                 <div class="p-1 rounded-full bg-primary group w-max">

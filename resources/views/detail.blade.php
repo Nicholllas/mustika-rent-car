@@ -76,7 +76,7 @@
                                 @endforeach
                             </ul>
 
-                            <div class="pt-5">
+                            {{-- <div class="pt-5">
                                 <label class="text-base font-semibold text-dark">Service Tambahan</label>
                                 <div class="flex gap-4">
                                     @foreach ($variant as $v)
@@ -88,7 +88,7 @@
                                         </div>
                                     @endforeach
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <!-- Price, CTA Button -->
                             <div class="flex items-center justify-between gap-4 pt-5 mt-auto">
@@ -130,23 +130,21 @@
         </header>
 
         <!-- Questions -->
-        <div class="grid md:grid-cols-2 gap-x-[50px] gap-y-6 max-w-[910px] w-full mx-auto">
-            <a href="#!" class="px-6 py-4 border rounded-[24px] border-grey h-min accordion max-w-[430px]"
-                id="faq1">
-                <div class="flex items-center justify-between gap-1">
-                    <p class="text-base font-semibold text-dark">
-                        What if I crash the car?
-                    </p>
-                    <img src="/svgs/ic-chevron-down-rounded.svg" class="transition-all" alt="">
+        <div class="flex p-4 space-x-4 overflow-x-auto no-scrollbar">
+            @foreach ($faqs as $faq)
+                <div class="px-6 py-4 border rounded-[24px] border-grey min-w-[300px]">
+                    <div class="flex items-center justify-between gap-1">
+                        <p class="text-base font-semibold text-dark">{{ $faq->question }}</p>
+                        <img src="../assets/svgs/ic-chevron-down-rounded.svg" class="transition-all" alt="">
+                    </div>
+                    <div class="hidden pt-4 max-w-[335px]">
+                        <p class="text-base text-dark leading-[26px]">
+                            {{ $faq->answer }}
+                        </p>
+                    </div>
                 </div>
-                <div class="hidden pt-4 max-w-[335px]" id="faq1-content">
-                    <p class="text-base text-dark leading-[26px]">
-                        Ipsum top talent busy making race that
-                        agreed both party. You can si amet lorem
-                        dolor get the rewards after winninng.
-                    </p>
-                </div>
-            </a>
+            @endforeach
+            <!-- Tambahkan item lainnya sesuai kebutuhan -->
         </div>
     </section>
 

@@ -42,8 +42,8 @@ class CheckoutController extends Controller
         // Calculate the total price
         $total_price = $days * $item->price;
 
-        // Add 10% tax
-        $total_price = $total_price + ($total_price * 0.1);
+        // Add 11% tax
+        $total_price = $total_price + ($total_price * 0.11);
 
         // Create a new booking
         $booking = $item->bookings()->create([

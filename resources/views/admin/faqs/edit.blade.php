@@ -38,13 +38,50 @@
                         <div class="w-full">
                             <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
                                 for="grid-last-name">
-                                Nama
+                                Pertanyaan
                             </label>
-                            <input value="{{ old('name') ?? $faq->question }}" name="question"
+                            <input value="{{ old('question') ?? $faq->question }}" name="question"
                                 class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name" faq="text" placeholder="Nama">
+                                id="grid-last-name" faq="text" placeholder="Pertanyaan">
                             <div class="mt-2 text-sm text-gray-500">
-                                Nama faqs. Contoh: Faq 1, Faq 2, Faq 3, dsb.
+                                Contoh: Bagaimana cara menyewa mobil di tempat ini? dsb. Wajib diisi. Maksimal 255
+                                karakter.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap px-3 mt-4 mb-6 -mx-3">
+                        <div class="w-full">
+                            <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                                for="grid-last-name">
+                                Jawaban*
+                            </label>
+                            <textarea name="answer" id="answer"
+                                class="w-full bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500"
+                                required>{{ old('answer') ?? $faq->answer }}</textarea>
+                            <div class="mt-2 text-sm text-gray-500">
+                                Contoh: Anda dapat menyewa mobil dengan menghubungi kami melalui WhatsApp,
+                                telepon, atau datang langsung ke kantor kami. Pastikan untuk membawa KTP/SIM dan
+                                memenuhi syarat penyewaan. dsb. Wajib diisi. Maksimal 255 karakter.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap px-3 mt-4 mb-6 -mx-3">
+                        <div class="w-full">
+                            <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                                for="grid-last-name">
+                                Status*
+                            </label>
+                            <input value="{{ old('status') ?? $faq->status }}" name="status"
+                                class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+                                id="grid-last-name" faq="text" placeholder="Status" required>
+                            <div class="mt-2 text-sm text-gray-500">
+                                Contoh: 1 atau 0. Wajib diisi dan hanya menerima value 1 atau 0.
+                                <br>
+                                0 = FAQ Tidak Aktif dan tidak ditampilkan pada halaman depan
+                                <br>
+                                1 = FAQ Aktif dan ditampilkan pada halaman depan
                             </div>
                         </div>
                     </div>

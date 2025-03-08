@@ -22,8 +22,8 @@
                     <x-nav-link href="{{ route('admin.types.index') }}" :active="request()->routeIs('admin.types.index')">
                         {{ __('Types') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('admin.variants.index') }}" :active="request()->routeIs('admin.variants.index')">
-                        {{ __('Variant') }}
+                    <x-nav-link href="{{ route('admin.faqs.index') }}" :active="request()->routeIs('admin.faqs.index')">
+                        {{ __('FAQs') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('admin.items.index') }}" :active="request()->routeIs('admin.items.index')">
                         {{ __('Items') }}
