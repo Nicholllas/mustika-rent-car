@@ -86,7 +86,7 @@
                             </div>
                         @else
                             <div class="flex flex-col w-full ml-auto lg:w-auto lg:gap-12 lg:items-center lg:flex-row">
-                                <a href="{{ route('login') }}" class="btn-secondary">
+                                <a href="{{ route('login') }}" class="text-white bg-red-500 btn-secondary hover:bg-red-600">
                                     Log In
                                 </a>
                             </div>

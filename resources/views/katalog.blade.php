@@ -72,7 +72,7 @@
         </div>
     </section>
     <!-- TOYOTA -->
-    <section class="bg-white">
+    <section class="bg-white mt-10 lg:mt-[25px]">
         <div class="container relative py-[10px]">
             <header class="mb-[30px]">
                 <h2 class="font-bold text-dark text-[26px] mb-1">
@@ -161,7 +161,7 @@
 
 
 
-    <!-- FAQ -->
+    {{-- <!-- FAQ -->
     <section class="container relative py-[100px]">
         <header class="text-center mb-[50px]">
             <h2 class="font-bold text-dark text-[26px] mb-1">
@@ -189,35 +189,37 @@
                 </div>
             </a>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Instant Booking -->
-    <section class="relative bg-[#060523]">
+    <section class="relative bg-[#060523] mt-10 lg:mt-[25px]">
         <div class="container py-20">
             <div class="flex flex-col">
                 <header class="mb-[50px] max-w-[360px] w-full">
                     <h2 class="font-bold text-white text-[25px] mb-4">
-                        Mobil Nyaman Harga Bersahabat<br>
-                        Perjalanan Tanpa Khawatir Dimulai Dari Sini
+                        Mobil Nyaman, Harga Terbaik <br>
+                        Perjalanan Bebas Khawatir Dimulai di Sini!
                     </h2>
-                    <p class="text-base text-subtlePars">Get an instant booking to catch up whatever your
-                        really want to achieve today, yes.</p>
+                    <p class="text-base text-subtlePars">Nikmati pemesanan instan dan wujudkan perjalanan impian Anda
+                        dengan mudah.</p>
                 </header>
                 <!-- Button Primary -->
                 <div class="p-1 rounded-full bg-primary group w-max">
-                    <a href="#" class="btn-primary">
+                    <a href="#" class="btn-primary flex items-center justify-between w-[250px] px-4 py-2">
                         <p>
-                            Book Now
+                            Pesan Sekarang
                         </p>
                         <img src="../assets/svgs/ic-arrow-right.svg" alt="">
                     </a>
                 </div>
+
             </div>
             <div class="absolute bottom-[-30px] right-0 lg:w-[764px] max-h-[332px] hidden lg:block">
                 <img src="../assets/images/porsche_small.webp" alt="">
             </div>
         </div>
     </section>
+
 
     <footer class="py-10 md:pt-[100px] md:pb-[70px] container">
         <p class="text-base text-center text-secondary">

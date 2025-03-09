@@ -66,7 +66,8 @@
                 </div>
                 <!-- Button Primary -->
                 <div class="p-1 rounded-full bg-primary group" data-aos="zoom-in" data-aos-delay="3400">
-                    <a href="checkout.html" class="btn-primary">
+                    <a href="checkout.html"
+                        class="btn-primary flex items-center justify-between px-6 py-3 w-[150px] transition-all duration-300 group-hover:w-[220px]">
                         <p>
                             Sewa Sekarang
                         </p>
@@ -133,18 +134,18 @@
 
         <div class="flex flex-col md:flex-row flex-wrap justify-center gap-8 lg:gap-[120px]">
             <!-- Testimoni Section (Swiper) -->
-            <div class="max-w-[400px] w-full bg-white shadow-lg rounded-xl p-6 text-center relative">
+            <div class="max-w-[400px] w-full bg-darkGrey shadow-lg rounded-xl p-6 text-center relative">
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
                         <!-- Testimoni 1 -->
                         @foreach ($testimoni as $t)
                             <div
-                                class="swiper-slide flex flex-col justify-center items-center h-[400px] bg-white shadow-lg p-6 rounded-lg">
+                                class="swiper-slide flex flex-col justify-center items-center h-[550px] bg-darkGrey p-6 rounded-lg">
                                 <img src="{{ $t->foto ?? 'https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg' }}"
-                                    alt="{{ $t->nama }}" class="w-16 h-16 mx-auto mb-4 rounded-full">
+                                    alt="{{ $t->nama }}" class="w-24 h-24 mx-auto mb-4 rounded-full">
                                 <h5 class="text-lg font-bold text-primary">{{ $t->nama }}</h5>
                                 <p class="mt-2 text-sm text-gray-600">"{{ $t->pesan }}"</p>
-                                <div class="flex justify-center mt-4 text-yellow-500">
+                                <div class="flex justify-center mt-4 text-2xl text-yellow-500">
                                     @for ($i = 0; $i < $t->rating; $i++)
                                         ★
                                     @endfor
@@ -157,12 +158,11 @@
                 <div class="absolute bottom-0 flex justify-center w-full py-4 swiper-pagination"></div>
             </div>
 
-            <!-- Benefits Section -->
             <div class="max-w-[268px] w-full">
                 <div class="flex flex-col gap-[30px]">
                     <div class="flex items-center gap-4">
-                        <div class="bg-dark rounded-[26px] p-[19px]">
-                            <img src="/svgs/ic-car.svg" alt="">
+                        <div class="bg-dark rounded-[26px] p-[19px] flex-shrink-0">
+                            <img src="/svgs/ic-car.svg" alt="" class="w-[30px] h-[30px]">
                         </div>
                         <div>
                             <h5 class="text-lg text-dark font-bold mb-[2px]">
@@ -173,8 +173,8 @@
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
-                        <div class="bg-dark rounded-[26px] p-[19px]">
-                            <img src="/svgs/ic-card.svg" alt="">
+                        <div class="bg-dark rounded-[26px] p-[19px] flex-shrink-0">
+                            <img src="/svgs/ic-card.svg" alt="" class="w-[30px] h-[30px]">
                         </div>
                         <div>
                             <h5 class="text-lg text-dark font-bold mb-[2px]">
@@ -185,8 +185,8 @@
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
-                        <div class="bg-dark rounded-[26px] p-[19px]">
-                            <img src="/svgs/ic-securityuser.svg" alt="">
+                        <div class="bg-dark rounded-[26px] p-[19px] flex-shrink-0">
+                            <img src="/svgs/ic-securityuser.svg" alt="" class="w-[30px] h-[30px]">
                         </div>
                         <div>
                             <h5 class="text-lg text-dark font-bold mb-[2px]">
@@ -197,8 +197,8 @@
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
-                        <div class="bg-dark rounded-[26px] p-[19px]">
-                            <img src="/svgs/ic-convert3dcube.svg" alt="">
+                        <div class="bg-dark rounded-[26px] p-[19px] flex-shrink-0">
+                            <img src="/svgs/ic-convert3dcube.svg" alt="" class="w-[30px] h-[30px]">
                         </div>
                         <div>
                             <h5 class="text-lg text-dark font-bold mb-[2px]">
@@ -212,7 +212,8 @@
                 <!-- CTA Button -->
                 <div class="mt-[50px]">
                     <div class="inline-block p-1 rounded-full bg-primary group">
-                        <a href="#" class="relative flex items-center justify-center space-x-2 btn-primary">
+                        <a href="#"
+                            class="btn-primary flex items-center justify-between px-6 py-3 w-[150px] transition-all duration-300 group-hover:w-[220px]">
                             <p
                                 class="transition-all duration-[320ms] translate-x-0 group-hover:-translate-x-3 text-center">
                                 Jelajahi Mobil
@@ -224,8 +225,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
+
     </section>
 
     <!-- Klien -->
@@ -408,13 +408,14 @@
                 </header>
                 <!-- Button Primary -->
                 <div class="p-1 rounded-full bg-primary group w-max">
-                    <a href="#" class="btn-primary flex items-center justify-between w-[300px] px-4 py-2">
+                    <a href="#" class="btn-primary flex items-center justify-between w-[250px] px-4 py-2">
                         <p>
                             Pesan Sekarang
                         </p>
                         <img src="../assets/svgs/ic-arrow-right.svg" alt="">
                     </a>
                 </div>
+
             </div>
             <div class="absolute bottom-[-30px] right-0 lg:w-[764px] max-h-[332px] hidden lg:block">
                 <img src="../assets/images/porsche_small.webp" alt="">
