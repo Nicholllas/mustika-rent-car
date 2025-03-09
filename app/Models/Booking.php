@@ -24,6 +24,7 @@ class Booking extends Model
         'total_price',
         'item_id',
         'user_id',
+        'invoice_number'
     ];
 
     protected $dates = [

@@ -80,29 +80,33 @@
                                 Metode Pembayaran
                             </h5>
                             <div class="grid md:grid-cols-2 gap-4 md:gap-[30px] items-center">
-                                <div class="relative boxPayment opacity-30">
-                                    <input type="radio" value="mastercard" name="payment_method" id="mastercard"
+                                <!-- COD (Disabled) -->
+                                <div class="relative opacity-50 boxPayment">
+                                    <input type="radio" value="cod" name="payment_method" id="cod"
                                         class="absolute inset-0 z-50 opacity-0 cursor-pointer" disabled>
-                                    <label for="mastercard"
+                                    <label for="cod"
                                         class="flex items-center justify-center gap-4 border border-grey rounded-[20px] p-5 min-h-[80px]">
                                         <img src="/svgs/logo-mastercard.svg" alt="">
                                         <p class="text-base font-semibold">
-                                            MANDIRI
+                                            CASH ON DELIVERY
                                         </p>
                                     </label>
                                 </div>
+
+                                <!-- Transfer (Bisa Diklik) -->
                                 <div class="relative boxPayment">
-                                    <input type="radio" value="midtrans" name="payment_method" id="midtrans"
+                                    <input type="radio" value="transfer" name="payment_method" id="transfer"
                                         class="absolute inset-0 z-50 opacity-0 cursor-pointer">
-                                    <label for="midtrans"
+                                    <label for="transfer"
                                         class="flex items-center justify-center gap-4 border border-grey rounded-[20px] p-5 min-h-[80px]">
                                         <img src="/svgs/logo-midtrans.svg" alt="">
                                         <p class="text-base font-semibold">
-                                            Midtrans
+                                            TRANSFER
                                         </p>
                                     </label>
                                 </div>
                             </div>
+
                         </div>
                         <!-- CTA Button -->
                         <div class="col-span-2 mt-5">

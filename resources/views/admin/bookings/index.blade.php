@@ -20,8 +20,8 @@
                     url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/id.json'
                 },
                 columns: [{
-                        data: 'id',
-                        name: 'id',
+                        data: 'invoice_number',
+                        name: 'invoice_number',
                     },
                     {
                         data: 'user.name',
@@ -75,7 +75,7 @@
                         <caption>Data Bookings</caption>
                         <thead>
                             <tr>
-                                <th style="max-width: 1%">ID</th>
+                                <th style="max-width: 1%">Nomor Booking</th>
                                 <th>User</th>
                                 <th>Brand</th>
                                 <th>Item</th>
@@ -83,7 +83,7 @@
                                 <th>Selesai</th>
                                 <th>Status Booking</th>
                                 <th>Status Pembayaran</th>
-                                <th>Total Dibayar</th>
+                                <th>Total Tagihan</th>
                                 <th style="max-width: 1%">Aksi</th>
                             </tr>
                         </thead>

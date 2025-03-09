@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -26,56 +27,51 @@ class PaymentController extends Controller
         ]);
     }
 
+
+
     public function update(Request $request, $bookingId)
     {
-        $booking = Booking::findOrFail($bookingId);
-        $booking->payment_method = $request->payment_method;
+    $booking = Booking::findOrFail($bookingId);
+    $booking->payment_method = $request->payment_method;
+    $booking->save(); // Simpan metode pembayaran ke database
 
-        if ($request->payment_method == 'midtrans') {
-            // Call Midtrans API
-            \Midtrans\Config::$serverKey = config('services.midtrans.serverKey');
-            \Midtrans\Config::$isProduction = config('services.midtrans.isProduction');
-            \Midtrans\Config::$isSanitized = config('services.midtrans.isSanitized');
-            \Midtrans\Config::$is3ds = config('services.midtrans.is3ds');
+    // Format data booking
+    $namaMobil = $booking->item->brand->name . ' ' . $booking->item->type->name;
 
-            // // Get USD to IDR rate using guzzle
-            // $client = new \GuzzleHttp\Client();
-            // $response = $client->request('GET', 'https://api.exchangerate-api.com/v4/latest/USD');
-            // $body = $response->getBody();
-            // $rate = json_decode($body)->rates->IDR;
+    // Hitung durasi dari start_date ke end_date
+    $startDate = Carbon::parse($booking->start_date);
+    $endDate = Carbon::parse($booking->end_date);
+    $durasi = $startDate->diffInDays($endDate) . ' hari';
 
-            // Convert to IDR
-            $totalPrice = $booking->total_price;
+    $tanggalMulai = $startDate->format('d/m/Y');
+    $tanggalSelesai = $endDate->format('d/m/Y');
 
-            // Create Midtrans Params
-            $midtransParams = [
-                'transaction_details' => [
-                    'order_id' => $booking->id,
-                    'gross_amount' => (int) $totalPrice,
-                ],
-                'customer_details' => [
-                    'first_name' => $booking->customer_name,
-                    'email' => $booking->customer_email,
-                ],
-                'enabled_payments' => ['gopay', 'bank_transfer'],
-                'vtweb' => []
-            ];
+    // Format harga tanpa mengubahnya ke integer
+    $hargaFormatted = number_format($booking->total_price, 0, ',', '.');
 
+    // Buat pesan WhatsApp
+    $pesan = "Halo, Saya ingin mengonfirmasi booking dengan detail berikut:\n\n"
+    . "*Booking ID:* {$booking->invoice_number}\n"
+    . "*Nama Penyewa:* {$booking->name}\n"
+    . "*Mobil:* $namaMobil\n"
+    . "*Durasi:* $durasi\n"
+    . "*Tanggal Sewa:* $tanggalMulai - $tanggalSelesai\n"
+    . "*Metode Pembayaran:* {$booking->payment_method}\n"
+    . "*Total Harga:* Rp {$hargaFormatted},-\n\n"
+    . "Mohon konfirmasinya. Terima kasih!";
 
+    // Encode pesan dengan rawurlencode agar tetap rapi
+    $pesanEncoded = rawurlencode($pesan);
 
-            // Get Snap Payment Page URL
-            $paymentUrl = \Midtrans\Snap::createTransaction($midtransParams)->redirect_url;
+    // Nomor admin WhatsApp
+    $nomorAdmin = "6285716762077";
 
-            // Save payment URL to booking
-            $booking->payment_url = $paymentUrl;
-            $booking->save();
+    // Redirect ke WhatsApp
+    return redirect("https://wa.me/$nomorAdmin?text=$pesanEncoded");
 
-            // Redirect to Snap Payment Page
-            return redirect($paymentUrl);
-        }
-
-        return redirect()->route('front.index');
     }
+
+
 
     public function success(Request $request)
     {

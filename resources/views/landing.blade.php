@@ -142,7 +142,7 @@
                             <div
                                 class="swiper-slide flex flex-col justify-center items-center h-[550px] bg-darkGrey p-6 rounded-lg">
                                 <img src="{{ $t->foto ?? 'https://mm.feb.uncen.ac.id/wp-content/uploads/2016/01/tutor-8.jpg' }}"
-                                    alt="{{ $t->nama }}" class="w-24 h-24 mx-auto mb-4 rounded-full">
+                                    alt="{{ $t->nama }}" class="w-20 h-20 mx-auto mb-4 rounded-full">
                                 <h5 class="text-lg font-bold text-primary">{{ $t->nama }}</h5>
                                 <p class="mt-2 text-sm text-gray-600">"{{ $t->pesan }}"</p>
                                 <div class="flex justify-center mt-4 text-2xl text-yellow-500">
