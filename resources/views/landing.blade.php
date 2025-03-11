@@ -3,80 +3,40 @@
         Home | {{ config('app.name') }}
     @endsection
     <!-- Hero -->
-    <section class="container relative pb-[100px] pt-[30px]">
-        <div class="flex flex-col items-center justify-center gap-[30px]">
-            <!-- Preview Image -->
-            <div class="relative">
-                <div class="absolute z-0 hidden lg:block">
-                    <div class="font-extrabold text-[220px] text-darkGrey tracking-[-0.06em] leading-[101%]">
-                        <div data-aos="fade-right" data-aos-delay="300">
-                            NEW
-                        </div>
-                        <div data-aos="fade-left" data-aos-delay="600">
-                            PORSCHE
-                        </div>
+    <section class="w-full relative pb-[100px] pt-[30px] px-0">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+            @foreach ($slides as $slide)
+                <div class="swiper-slide flex items-center justify-center min-h-[600px] px-4 md:px-8 lg:px-16">
+                    <!-- Konten Promo (Kiri) -->
+                    <div class="flex flex-col justify-center items-start bg-[#ffff] p-6 md:p-8 rounded-lg w-full max-w-[600px] mr-6 min-h-[450px] lg:min-h-[500px]">
+                        <h2 class="text-3xl md:text-4xl font-bold text-[#004d40] mb-4">{{ $slide->judul }}</h2>
+                        <ul class="list-disc list-inside text-[#8d6e63] mb-4 text-base md:text-lg">
+                            <li>{{ $slide->deskripsi }}</li>
+                            @if($slide->potongan)
+                                <li>Dapatkan potongan hingga Rp. {{ number_format($slide->potongan) }}</li>
+                            @endif
+                            <li>Promo berlaku sampai {{ \Carbon\Carbon::parse($slide->tanggal_berakhir)->format('d M Y') }}</li>
+                        </ul>
+                        <button class="bg-[#b2dfdb] text-[#004d40] px-8 py-3 rounded-full shadow-md hover:bg-[#8d6e63] hover:text-white transition">
+                            Redeem Promo
+                        </button>
+                    </div>
+                    <!-- Preview Image (Kanan) -->
+                    <div class="relative flex justify-center items-center h-full min-h-[450px] lg:min-h-[500px]">
+                        <img src="{{ asset('storage/' . $slide->gambar) }}" class="w-full max-w-[700px] md:max-w-[800px] object-contain z-10 relative rounded-lg" alt="Promo {{ $slide->judul }}"
+                            data-aos="zoom-in" data-aos-delay="950">
                     </div>
                 </div>
-                <img src="../assets/images/porsche.webp" class="w-full max-w-[963px] z-10 relative" alt=""
-                    data-aos="zoom-in" data-aos-delay="950">
+            @endforeach
             </div>
 
-            <div class="flex flex-col lg:flex-row items-center justify-around lg:gap-[60px] gap-7">
-                <!-- Car Details -->
-                <div class="flex items-center gap-y-12">
-                    <div class="flex flex-col items-center gap-[2px] px-3 md:px-10" data-aos="fade-left"
-                        data-aos-delay="1400">
-                        <h6 class="font-bold text-dark text-xl md:text-[26px] text-center">
-                            380
-                        </h6>
-                        <p class="text-sm font-normal text-center md:text-base text-secondary">
-                            Horse Power
-                        </p>
-                    </div>
-                    <span class="vr" data-aos="fade-left" data-aos-delay="1600"></span>
-                    <div class="flex flex-col items-center gap-[2px] px-3 md:px-10" data-aos="fade-left"
-                        data-aos-delay="1900">
-                        <h6 class="font-bold text-dark text-xl md:text-[26px] text-center">
-                            12S
-                        </h6>
-                        <p class="text-sm font-normal text-center md:text-base text-secondary">
-                            Speed AT
-                        </p>
-                    </div>
-                    <span class="vr" data-aos="fade-left" data-aos-delay="2100"></span>
-                    <div class="flex flex-col items-center gap-[2px] px-3 md:px-10" data-aos="fade-left"
-                        data-aos-delay="2400">
-                        <h6 class="font-bold text-dark text-xl md:text-[26px] text-center">
-                            AWD
-                        </h6>
-                        <p class="text-sm font-normal text-center md:text-base text-secondary">
-                            Drive
-                        </p>
-                    </div>
-                    <span class="vr" data-aos="fade-left" data-aos-delay="2600"></span>
-                    <div class="flex flex-col items-center gap-[2px] px-3 md:px-10" data-aos="fade-left"
-                        data-aos-delay="2900">
-                        <h6 class="font-bold text-dark text-xl md:text-[26px] text-center">
-                            A.I
-                        </h6>
-                        <p class="text-sm font-normal text-center md:text-base text-secondary">
-                            Tracking
-                        </p>
-                    </div>
-                </div>
-                <!-- Button Primary -->
-                <div class="p-1 rounded-full bg-primary group" data-aos="zoom-in" data-aos-delay="3400">
-                    <a href="checkout.html"
-                        class="btn-primary flex items-center justify-between px-6 py-3 w-[150px] transition-all duration-300 group-hover:w-[220px]">
-                        <p>
-                            Sewa Sekarang
-                        </p>
-                        <img src="../assets/svgs/ic-arrow-right.svg" alt="">
-                    </a>
-                </div>
-            </div>
+            <!-- Navigation Buttons -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
     </section>
+
 
     <!-- Popular Cars -->
     <section class="bg-darkGrey">
