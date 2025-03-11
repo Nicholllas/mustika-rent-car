@@ -55,6 +55,8 @@ Route::prefix('admin')->name('admin.')->middleware([
     Route::resource('items', AdminItemController::class);
     Route::resource('bookings', AdminBookingController::class);
     Route::resource('promotions', AdminPromotionController::class);
+
+
+
+
 });
-
-

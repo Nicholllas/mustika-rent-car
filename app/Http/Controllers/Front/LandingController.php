@@ -16,7 +16,7 @@ class LandingController extends Controller
         $items = Item::with(['type', 'brand'])->latest()->take(4)->get()->reverse();
         $faqs = Faq::where('status', 1)->get();
         $testimoni = Testimoni::all();
-        $slides = Promotion::where('status', true)->get();
+        $slides = Promotion::latest()->take(5)->get(); // Mengambil 5 promo terbaru
 
         return view('landing', [
             'items' => $items,
@@ -25,5 +25,4 @@ class LandingController extends Controller
             'slides' => $slides
         ]);
     }
-
 }

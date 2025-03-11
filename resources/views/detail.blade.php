@@ -140,7 +140,7 @@
                     </div>
                     <div class="hidden pt-4 max-w-[335px]">
                         <p class="text-base text-dark leading-[26px]">
-                            {{ $faq->answer }}
+                            {!! $faq->answer !!}
                         </p>
                     </div>
                 </div>

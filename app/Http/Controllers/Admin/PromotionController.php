@@ -2,120 +2,107 @@
 
 namespace App\Http\Controllers\Admin;
 
-
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TypeRequest;
 use Illuminate\Http\Request;
 use App\Models\Promotion;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
-use App\Http\Requests\ItemUpdateRequest;
 
 class PromotionController extends Controller
 {
-    // 🔍 Read (Index)
     public function index()
     {
         if (request()->ajax()) {
             $query = Promotion::query();
-    
+
             return DataTables::of($query)
-                ->editColumn('photos', function ($promotion) {
-                    return '<img src="' . $promotion->photos . '" alt="photos" class="w-20 mx-auto rounded-md">';
-                    })
+                ->editColumn('photo', fn($promotion) => '<img src="' . $promotion->thumbnail . '" alt="photo" class="w-20 mx-auto rounded-md">')
                 ->addColumn('action', function ($promotion) {
                     return '
-                        <a class="block w-full px-2 py-1 mb-1 text-xs text-center text-white transition duration-500 bg-gray-700 border border-gray-700 rounded-md select-none ease hover:bg-gray-800 focus:outline-none focus:shadow-outline"
+                        <a class="block w-full px-2 py-1 mb-1 text-xs text-center text-white bg-gray-700 rounded-md"
                             href="' . route('admin.promotions.edit', $promotion->id) . '">
                             Sunting
                         </a>
-                        <form class="block w-full" onsubmit="return confirm(\'Apakah anda yakin?\');" -block" action="' . route('admin.promotions.destroy', $promotion->id) . '" method="POST">
-                        <button class="w-full px-2 py-1 text-xs text-white transition duration-500 bg-red-500 border border-red-500 rounded-md select-none ease hover:bg-red-600 focus:outline-none focus:shadow-outline" >
-                            Hapus
-                        </button>
+                        <form class="block w-full" onsubmit="return confirm(\'Apakah anda yakin?\');" action="' . route('admin.promotions.destroy', $promotion->id) . '" method="POST">
                             ' . method_field('delete') . csrf_field() . '
+                            <button class="w-full px-2 py-1 text-xs text-white bg-red-500 rounded-md">
+                                Hapus
+                            </button>
                         </form>';
                 })
-                ->rawColumns(['action','photos'])
+                ->rawColumns(['action', 'photo'])
                 ->make();
         }
-    
+
         return view('admin.promotions.index');
     }
-
 
     public function create()
     {
         return view('admin.promotions.create');
     }
 
-    // 🚀 Store (Create)
     public function store(Request $request)
     {
-        $data = $request->all();
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'disc' => 'nullable|numeric',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
+        $data = $request->except('photo');
 
-        //upload multiple photos
-        if($request->hasFile('photos')) {
-            $photos = [];
-
-            foreach($request->file('photos') as $photo) {
-                $photoPath = $photo->store('assets/item', 'public');
-
-                //push to array
-                array_push($photos, $photoPath);    
-            }
-
-            $data['photos'] = json_encode($photos);
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $request->file('photo')->store('assets/promotion', 'public');
         }
+
         Promotion::create($data);
-
-        return redirect()->route('admin.promotions.index');
+        return redirect()->route('admin.promotions.index')->with('success', 'Promo berhasil ditambahkan!');
     }
 
-    // 🔍 Show (Detail)
-    public function show(Request $request, Promotion $promotion)
+    public function edit(Promotion $promotion)
     {
-        return view('promotions.show', compact('promotion'));
-    }
-
-    // 🖊 Edit (Form)
-    public function edit(Promotion $promotion,Request $request)
-    {
-        // $promotion = Promotion::where('id', $request->id)->get();
-        // var_dump($promotion->id);die;
         return view('admin.promotions.edit', compact('promotion'));
     }
 
-    // 🖊 Update
     public function update(Request $request, Promotion $promotion)
     {
-        $data = $request->all();
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'disc' => 'nullable|numeric',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-        //upload multiple photos, if there is new photo
-        if($request->hasFile('photos')) {
-        $photos = [];
+        $data = $request->except('photo');
 
-        foreach($request->file('photos') as $photo) {
-        $photoPath = $photo->store('assets/item', 'public');
+        if ($request->hasFile('photo')) {
+            // Hapus foto lama jika ada
+            if ($promotion->photo) {
+                Storage::disk('public')->delete($promotion->photo);
+            }
 
-        //push to array
-        array_push($photos, $photoPath);
+            // Simpan foto baru
+            $data['photo'] = $request->file('photo')->store('assets/promotion', 'public');
         }
 
-        $data['photos'] = json_encode($photos);
-        }else{
-            $data['photos'] = $item->photos;
-        }
-        $item->update($data);
-
-        return redirect()->route('admin.promotion.index');
+        $promotion->update($data);
+        return redirect()->route('admin.promotions.index')->with('success', 'Promo berhasil diperbarui!');
     }
 
-    // ❌ Delete
     public function destroy(Promotion $promotion)
     {
+        if ($promotion->photo) {
+            Storage::disk('public')->delete($promotion->photo);
+        }
+
         $promotion->delete();
-        return redirect()->route('promotions.index')->with('success', 'Promo berhasil dihapus!');
+        return redirect()->route('admin.promotions.index')->with('success', 'Promo berhasil dihapus!');
     }
+
 }

@@ -7,42 +7,43 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
-
 class Promotion extends Model
 {
     use HasFactory, SoftDeletes;
 
-    // protected $table = 'promotions';
-
-    // protected $primaryKey = 'id_promo';
-
     protected $fillable = [
-        'judul',
-        'deskripsi',
-        'potongan',
-        'tanggal_mulai',
-        'tanggal_berakhir',
-        'photos',
-        'status',
+        'title',
+        'description',
+        'disc',
+        'start_date',
+        'end_date',
+        'photo', // Mengubah dari 'photos' ke 'photo' (hanya 1 gambar)
     ];
 
-    
-    protected $casts = [
-        'photos' => 'array'
-    ];
+    protected $appends = ['thumbnail'];
 
+    /**
+     * Mengembalikan URL thumbnail dari foto promosi.
+     * Jika tidak ada foto, maka mengembalikan gambar default.
+     */
     public function getThumbnailAttribute()
     {
-    // If photos exist
-    if ($this->photos) {
-    return Storage::url(json_decode($this->photos)[0]);
+        if (!empty($this->photo)) {
+            return asset('storage/' . $this->photo);
+        }
+
+        return asset('images/default.png');
     }
 
-    return asset('images/default.png');
+    /**
+     * Menghapus foto dari storage dan memperbarui database.
+     */
+    public function removePhoto()
+    {
+        if (!empty($this->photo)) {
+            Storage::disk('public')->delete($this->photo);
+            $this->photo = null;
+            $this->save();
+        }
     }
-
-    // public function items ()
-    // {
-    //     return $this->hasMany(Item::class);
-    // }
 }
