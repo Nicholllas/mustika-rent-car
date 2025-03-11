@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\VariantController as AdminVariantController;
 use App\Http\Controllers\Admin\FAQController as AdminFAQController;
+use App\Http\Controllers\Admin\PromotionController as AdminPromotionController;
 use App\Http\Controllers\Front\CatalogueController;
 
 /*
@@ -53,4 +54,7 @@ Route::prefix('admin')->name('admin.')->middleware([
     Route::resource('faqs', AdminFAQController::class);
     Route::resource('items', AdminItemController::class);
     Route::resource('bookings', AdminBookingController::class);
+    Route::resource('promotions', AdminPromotionController::class);
 });
+
+
