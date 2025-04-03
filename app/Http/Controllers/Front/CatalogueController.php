@@ -9,27 +9,46 @@ use App\Http\Controllers\Controller;
 class CatalogueController extends Controller
 {
     public function index()
-{
-    $toyota = Item::with(['type', 'brand'])
-                    ->whereHas('brand', function ($query) {
-                        $query->where('name', 'Toyota');
-                    })
-                    ->latest()
-                    ->take(4)
-                    ->get();
+    {
+        $brands = ['Toyota', 'Honda', 'Mitsubishi', 'Suzuki', 'Isuzu', 'Daihatsu'];
+        $types = ['Bus', 'Electric Vehicles'];
 
-    $honda = Item::with(['type', 'brand'])
-                    ->whereHas('brand', function ($query) {
-                        $query->where('name', 'Honda');
-                    })
-                    ->latest()
-                    ->take(4)
-                    ->get();
+        $data = [];
 
-    return view('katalog', [
-        'honda' => $honda,
-        'toyota' => $toyota,
-    ]);
-}
+        // Get vehicles by brand
+        foreach ($brands as $brand) {
+            $key = strtolower($brand);
+            $query = Item::with(['type', 'brand'])
+                ->whereHas('brand', fn($query) => $query->where('name', $brand))
+                ->latest();
 
+            // Check if we need pagination
+            if ($query->count() > 8) {
+                $data[$key] = $query->paginate(8);
+                $data[$key.'_paginated'] = true;
+            } else {
+                $data[$key] = $query->get();
+                $data[$key.'_paginated'] = false;
+            }
+        }
+
+        // Get vehicles by type
+        foreach ($types as $type) {
+            $key = strtolower(str_replace(' ', '_', $type));
+            $query = Item::with(['type', 'brand'])
+                ->whereHas('type', fn($query) => $query->where('name', $type))
+                ->latest();
+
+            // Check if we need pagination
+            if ($query->count() > 4) {
+                $data[$key] = $query->paginate(4);
+                $data[$key.'_paginated'] = true;
+            } else {
+                $data[$key] = $query->get();
+                $data[$key.'_paginated'] = false;
+            }
+        }
+
+        return view('katalog', $data);
+    }
 }

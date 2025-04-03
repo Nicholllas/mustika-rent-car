@@ -17,6 +17,7 @@
 
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -31,75 +32,103 @@
 
 <body>
 
-    <nav class="container relative my-3 lg:my-6">
-        <div class="flex flex-col justify-between w-full lg:flex-row lg:items-center">
-            <!-- Logo & Toggler Button here -->
-            <div class="flex items-center justify-between">
-                <!-- LOGO -->
+    <!-- Header and Navigation -->
+    <header id="navbar" class="sticky top-0 z-50 w-full bg-white shadow-sm">
+        <div class="container px-4 mx-auto">
+            <div class="flex items-center justify-between py-4">
+                <!-- Logo -->
                 <a href="{{ route('front.index') }}" class="flex items-center">
-                    <img src="/svgs/MTR.png" alt="stream" class="w-130 h-25 custom-image" />
-                    <span class="ml-2 text-xl font-bold">Mustika Rental</span>
+                    <img src="/svgs/MTR.png" alt="Mustika Rental" class="h-8 md:h-10">
+                    <span class="ml-3 text-xl font-bold text-gray-900">Mustika Rental</span>
                 </a>
 
-                <!-- RESPONSIVE NAVBAR BUTTON TOGGLER -->
-                <div class="block lg:hidden">
-                    <button class="p-1 outline-none mobileMenuButton" id="navbarToggler" data-target="#navigation">
-                        <svg class="text-dark w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
+                <!-- Desktop Navigation -->
+                <nav class="items-center hidden space-x-8 lg:flex">
+                    <div class="flex space-x-8">
+                        <a href="{{ route('front.index') }}"
+                            class="font-medium text-gray-900 transition duration-300 hover:text-red-500">Beranda</a>
+                        <a href="{{ route('front.profile') }}"
+                            class="font-medium text-gray-900 transition duration-300 hover:text-red-500">Profil</a>
+                        <a href="{{ route('front.catalogue') }}"
+                            class="font-medium text-gray-900 transition duration-300 hover:text-red-500">Katalog</a>
+                    </div>
+
+                    @auth
+                        <form method="POST" action="{{ route('logout') }}" class="ml-8">
+                            @csrf
+                            <button type="submit"
+                                class="px-6 py-2 text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-600">
+                                Log Out
+                            </button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}"
+                            class="px-6 py-2 ml-8 text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-600">
+                            Log In
+                        </a>
+                    @endauth
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="text-gray-900 lg:hidden focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16">
+                        </path>
+                    </svg>
+                </button>
             </div>
 
-            <!-- Nav Menu -->
-            <div class="hidden w-full lg:block" id="navigation">
-                <div
-                    class="flex flex-col items-baseline gap-4 mt-6 lg:justify-between lg:flex-row lg:items-center lg:mt-0">
-                    <div class="flex flex-col w-full ml-auto lg:w-auto gap-4 lg:gap-[50px] lg:items-center lg:flex-row">
-                        <a href="{{ route('front.index') }}" class="nav-link-item">Beranda</a>
-                        <a href="#!" class="nav-link-item">Profil</a>
-                        <a href="{{ route('front.catalogue') }}" class="nav-link-item">Katalog</a>
-                        {{-- <a href="#!" class="nav-link-item">Contact Us</a> --}}
-                        {{-- <a href="#!" class="nav-link-item">Peta</a> --}}
-                    </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden py-4 border-t border-gray-200 lg:hidden">
+                <div class="flex flex-col space-y-4">
+                    <a href="{{ route('front.index') }}"
+                        class="font-medium text-gray-900 hover:text-red-500">Beranda</a>
+                    <a href="{{ route('front.profile') }}"
+                        class="font-medium text-gray-900 hover:text-red-500">Profil</a>
+                    <a href="{{ route('front.catalogue') }}"
+                        class="font-medium text-gray-900 hover:text-red-500">Katalog</a>
+
                     @auth
-                        <div class="flex flex-col w-full ml-auto lg:w-auto lg:gap-12 lg:items-center lg:flex-row">
-                            {{-- Logout --}}
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <a href="{{ route('logout') }}" class="btn-secondary"
-                                    onclick="event.preventDefault();
-                  this.closest('form').submit();">
-                                    Log Out
-                                </a>
-                            </form>
-                        </div>
+                        <form method="POST" action="{{ route('logout') }}" class="pt-4">
+                            @csrf
+                            <button type="submit"
+                                class="w-full px-4 py-2 text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-600">
+                                Log Out
+                            </button>
+                        </form>
                     @else
-                        <div class="flex flex-col w-full ml-auto lg:w-auto lg:gap-12 lg:items-center lg:flex-row">
-                            <a href="{{ route('login') }}" class="text-white bg-red-500 btn-secondary hover:bg-red-600">
-                                Log In
-                            </a>
-                        </div>
+                        <a href="{{ route('login') }}"
+                            class="px-4 py-2 mt-4 text-center text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-600">
+                            Log In
+                        </a>
                     @endauth
                 </div>
             </div>
         </div>
-    </nav>
+    </header>
 
-    {{ $slot }}
+
+
+    <!-- Main Content Area -->
+    <main>
+        {{ $slot }}
     </main>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Footer content goes here -->
+    </footer>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="{{ url('js/script.js') }}"></script>
     <script src="{{ url('js/faqs.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    <!-- Inisialisasi AOS -->
+    <!-- Initialize AOS -->
     <script>
         AOS.init({
             once: true,
@@ -108,13 +137,13 @@
         });
     </script>
 
-    <!-- Inisialisasi Swiper -->
+    <!-- Swiper Hero Section-->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var swiper = new Swiper(".mySwiper", {
+            var swiper = new Swiper(".heroSwiper", {
                 loop: true,
                 autoplay: {
-                    delay: 3000,
+                    delay: 5000,
                     disableOnInteraction: false,
                 },
                 navigation: {
@@ -124,8 +153,83 @@
                 pagination: {
                     el: ".swiper-pagination",
                     clickable: true,
+                    renderBullet: function(index, className) {
+                        return '<span class="' + className +
+                            ' !w-3 !h-3 !mx-1 !bg-gray-300 !opacity-100 hover:!bg-red-300"></span>';
+                    },
                 }
             });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel-inner');
+            const items = document.querySelectorAll('.carousel-item');
+            const dots = document.querySelectorAll('.dot-button');
+            const prevBtn = document.querySelector('.carousel-prev');
+            const nextBtn = document.querySelector('.carousel-next');
+
+            let currentIndex = 0;
+            const itemCount = items.length;
+
+            // Update carousel position
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+                // Update active dot
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('bg-red-500', index === currentIndex);
+                    dot.classList.toggle('bg-gray-300', index !== currentIndex);
+                });
+            }
+
+            // Next slide
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % itemCount;
+                updateCarousel();
+            }
+
+            // Previous slide
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + itemCount) % itemCount;
+                updateCarousel();
+            }
+
+            // Auto-rotate (optional)
+            let autoSlide = setInterval(nextSlide, 5000);
+
+            // Pause on hover
+            document.querySelector('.testimonial-carousel').addEventListener('mouseenter', () => {
+                clearInterval(autoSlide);
+            });
+
+            document.querySelector('.testimonial-carousel').addEventListener('mouseleave', () => {
+                autoSlide = setInterval(nextSlide, 5000);
+            });
+
+            // Dot navigation
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    currentIndex = parseInt(dot.dataset.index);
+                    updateCarousel();
+                });
+            });
+
+            // Button navigation
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            // Initialize
+            updateCarousel();
+        });
+    </script>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
         });
     </script>
 

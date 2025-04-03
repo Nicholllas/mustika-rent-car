@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\VariantController as AdminVariantController;
 use App\Http\Controllers\Admin\FAQController as AdminFAQController;
 use App\Http\Controllers\Admin\PromotionController as AdminPromotionController;
 use App\Http\Controllers\Front\CatalogueController;
+use App\Http\Controllers\Front\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,9 @@ use App\Http\Controllers\Front\CatalogueController;
 Route::name('front.')->group(function (){
     Route::get('/', [LandingController::class, 'index'])->name('index');
     Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue');
+    Route::get('/catalogue/brand/{brand}', [CatalogueController::class, 'brand'])->name('catalogue.brand');
+    Route::get('/catalogue/type/{type}', [CatalogueController::class, 'type'])->name('catalogue.type');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/detail/{slug}', [DetailController::class, 'index'])->name('detail');
     Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 

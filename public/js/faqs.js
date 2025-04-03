@@ -1,17 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const faqItems = document.querySelectorAll(".px-6.py-4.border");
+    const faqCards = document.querySelectorAll("[data-faq-card]");
 
-    faqItems.forEach((item) => {
-        const question = item.querySelector(".flex.items-center");
-        const answer = item.querySelector("div.hidden");
-        const icon = item.querySelector("img");
+    faqCards.forEach((card) => {
+        const toggle = card.querySelector("[data-faq-toggle]");
+        const content = card.querySelector("[data-faq-content]");
 
-        question.addEventListener("click", function () {
-            // Toggle jawaban
-            answer.classList.toggle("hidden");
+        toggle.addEventListener("click", () => {
+            // Close all other cards
+            faqCards.forEach((otherCard) => {
+                if (otherCard !== card) {
+                    otherCard.classList.remove("bg-blue-50", "border-blue-400");
+                    otherCard
+                        .querySelector("[data-faq-content]")
+                        .classList.add("hidden");
+                    otherCard
+                        .querySelector("svg")
+                        .classList.remove("rotate-180");
+                }
+            });
 
-            // Putar ikon (chevron)
-            icon.classList.toggle("rotate-180");
+            // Toggle current card
+            card.classList.toggle("bg-blue-50");
+            card.classList.toggle("border-blue-400");
+            content.classList.toggle("hidden");
+            toggle.querySelector("svg").classList.toggle("rotate-180");
         });
     });
 });

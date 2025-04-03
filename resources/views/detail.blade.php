@@ -1,118 +1,129 @@
 <x-front-layout>
-    <!-- Main Content -->
     @section('title')
         Detail {{ $item->name }}
     @endsection
-    <section class="bg-darkGrey relative py-[70px]">
-        <div class="container">
-            <!-- Breadcrumb -->
-            <ul class="flex items-center gap-5 mb-[50px]">
-                <li
-                    class="text-secondary font-normal text-base capitalize after:content-['/'] last:after:content-none inline-flex gap-5">
-                    <a href="{{ route('front.index') }}">Home</a>
-                </li>
-                <li
-                    class="text-secondary font-normal text-base capitalize after:content-['/'] last:after:content-none inline-flex gap-5">
-                    <a href="#!">
-                        {{ $item->brand->name }}
-                    </a>
-                </li>
-                <li
-                    class="text-dark font-semibold text-base capitalize after:content-['/'] last:after:content-none inline-flex gap-5">
-                    Details
-                </li>
-            </ul>
 
-            <div class="grid grid-cols-12 gap-[30px]">
-                <!-- Car Preview -->
-                <div class="col-span-12 lg:col-span-8">
-                    <div class="bg-white p-4 rounded-[30px] flex flex-col gap-4" id="gallery">
+    <!-- Main Content -->
+    <section class="py-12 bg-gray-50">
+        <div class="container px-4 mx-auto">
+            <!-- Breadcrumb -->
+            <nav class="flex mb-8" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-4">
+                    <li class="inline-flex items-center">
+                        <a href="{{ route('front.index') }}"
+                            class="inline-flex items-center text-gray-600 hover:text-red-500">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <a href="#" class="ml-4 text-gray-600 hover:text-red-500">
+                                {{ $item->brand->name }}
+                            </a>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="ml-4 font-medium text-gray-900">Detail</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+                <!-- Car Gallery -->
+                <div class="lg:col-span-2">
+                    <div class="p-6 bg-white shadow-sm rounded-xl" id="gallery">
                         <img :src="thumbnails[activeThumbnail].url" :key="thumbnails[activeThumbnail].id"
-                            class="md:h-[490px] rounded-[18px] h-auto w-full" alt="">
-                        <div class="grid items-center grid-cols-4 gap-3 md:gap-5">
+                            class="w-full rounded-lg h-auto md:h-[500px] object-cover" alt="{{ $item->name }}">
+
+                        <div class="grid grid-cols-4 gap-4 mt-4">
                             <div v-for="(thumbnail, index) in thumbnails" :key="thumbnail.id">
-                                <a href="#!" @click="changeActive(index)">
-                                    <img :src="thumbnail.url" alt="" class="thumbnail"
-                                        :class="{ selected: index == activeThumbnail }">
-                                </a>
+                                <button @click="changeActive(index)" class="focus:outline-none">
+                                    <img :src="thumbnail.url" alt=""
+                                        class="object-cover w-full h-20 transition-all border-2 rounded-lg"
+                                        :class="{
+                                            'border-red-500': index == activeThumbnail,
+                                            'border-transparent': index !=
+                                                activeThumbnail
+                                        }">
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Details -->
-                <div class="col-span-12 md:col-start-5 lg:col-start-auto md:col-span-8 lg:col-span-4">
-                    <div class="bg-white p-5 pb-[30px] rounded-3xl h-full">
-                        <div class="flex flex-col h-full divide-y divide-grey">
-                            <!-- Name, Category, Rating -->
-                            <div class="max-w-[230px] pb-5">
-                                <h1 class="font-bold text-[28px] leading-[42px] text-dark mb-[6px]">
-                                    {{ $item->brand->name }} {{ $item->name }}
-                                </h1>
-                                <p class="text-secondary font-normal text-base mb-[10px]">
-                                    {{ $item->type->name }}
-                                </p>
-                                <div class="flex items-center gap-2">
-                                    <span class="flex items-center gap-1">
-                                        @for ($i = 0; $i < floor($item->star); $i++)
-                                            <img src="/svgs/ic-star.svg" class="h-[22px] w-[22px]" alt="">
-                                        @endfor
-                                    </span>
-                                    <p class="text-base font-semibold text-dark mt-[2px]">
-                                        ({{ $item->review }})
-                                    </p>
+                <!-- Car Details -->
+                <div class="lg:col-span-1">
+                    <div class="flex flex-col h-full p-6 bg-white shadow-sm rounded-xl">
+                        <div class="mb-6">
+                            <h1 class="mb-2 text-2xl font-bold text-gray-900">
+                                {{ $item->brand->name }} {{ $item->name }}
+                            </h1>
+                            <p class="mb-3 text-gray-600">
+                                {{ $item->type->name }}
+                            </p>
+                            <div class="flex items-center">
+                                <div class="flex mr-2 text-yellow-400">
+                                    @for ($i = 0; $i < floor($item->star); $i++)
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                    @endfor
                                 </div>
+                                <span class="font-medium text-gray-900">({{ $item->review }})</span>
                             </div>
-                            <!-- Features -->
-                            <ul class="flex flex-col gap-4 flex-start pt-5 pb-[25px]">
+                        </div>
+
+                        <!-- Features -->
+                        <div class="pt-4 mb-6 border-t border-gray-200">
+                            <h3 class="mb-4 text-lg font-semibold text-gray-900">Fitur Utama</h3>
+                            <ul class="space-y-3">
                                 @php
                                     $features = explode(',', $item->features);
                                 @endphp
                                 @foreach ($features as $feature)
-                                    <li class="flex items-center gap-3 text-base font-semibold text-dark">
-                                        <img src="/svgs/ic-checkDark.svg" alt="">
-                                        {{ $feature }}
+                                    <li class="flex items-start">
+                                        <svg class="w-5 h-5 mr-2 text-green-500" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        <span class="text-gray-700">{{ trim($feature) }}</span>
                                     </li>
                                 @endforeach
                             </ul>
+                        </div>
 
-                            {{-- <div class="pt-5">
-                                <label class="text-base font-semibold text-dark">Service Tambahan</label>
-                                <div class="flex gap-4">
-                                    @foreach ($variant as $v)
-                                        <div>
-                                            <input type="checkbox" id="variant_{{ $v->id }}"
-                                                class="variant-checkbox">
-                                            <label for="variant_{{ $v->id }}"
-                                                class="text-base text-dark">{{ $v->name }}</label>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div> --}}
-
-                            <!-- Price, CTA Button -->
-                            <div class="flex items-center justify-between gap-4 pt-5 mt-auto">
+                        <!-- Price & CTA -->
+                        <div class="pt-4 mt-auto border-t border-gray-200">
+                            <div class="flex items-center justify-between">
                                 <div>
-                                    <p class="font-bold text-dark text-[19px]">
+                                    <p class="text-xl font-bold text-red-500">
                                         Rp{{ number_format($item->price, 0, ',', '.') }}
                                     </p>
-                                    <p class="text-base font-normal text-secondary">
-                                        /hari
-                                    </p>
+                                    <p class="text-gray-600">/hari</p>
                                 </div>
-                                <div class="w-full max-w-[70%]">
-                                    <!-- Button Primary -->
-                                    <div class="p-1 rounded-full bg-primary group">
-                                        {{-- <a href="{{ route('front.checkout', $item->slug) }}" --}}
-                                        <a href="{{ route('front.checkout', $item->slug) }}"
-                                            class="text-md btn-primary">
-                                            <p>
-                                                Sewa Sekarang
-                                            </p>
-                                            <img src="/svgs/ic-arrow-right.svg" alt="">
-                                        </a>
-                                    </div>
-                                </div>
+                                <a href="{{ route('front.checkout', $item->slug) }}"
+                                    class="flex items-center px-6 py-3 text-white transition duration-300 bg-red-500 rounded-lg hover:bg-red-600">
+                                    Sewa Sekarang
+                                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                    </svg>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -121,74 +132,94 @@
         </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="container relative py-[100px]">
-        <header class="text-center mb-[50px]">
-            <h2 class="font-bold text-dark text-[26px] mb-1">
-                Pertanyaan yang sering diajakukan
-            </h2>
-            <p class="text-base text-secondary">Pelajari lebih lanjut tentang mustika rental</p>
-        </header>
-
-        <!-- Questions -->
-        <div class="flex p-4 space-x-4 overflow-x-auto no-scrollbar">
-            @foreach ($faqs as $faq)
-                <div class="px-6 py-4 border rounded-[24px] border-grey min-w-[300px]">
-                    <div class="flex items-center justify-between gap-1">
-                        <p class="text-base font-semibold text-dark">{{ $faq->question }}</p>
-                        <img src="../assets/svgs/ic-chevron-down-rounded.svg" class="transition-all" alt="">
-                    </div>
-                    <div class="hidden pt-4 max-w-[335px]">
-                        <p class="text-base text-dark leading-[26px]">
-                            {!! $faq->answer !!}
-                        </p>
-                    </div>
-                </div>
-            @endforeach
-            <!-- Tambahkan item lainnya sesuai kebutuhan -->
-        </div>
-    </section>
-
     <!-- Similar Cars -->
-    <section class="bg-darkGrey">
-        <div class="container relative py-[100px]">
-            <header class="mb-[30px]">
-                <h2 class="font-bold text-dark text-[26px] mb-1">
-                    Pilihan Mobil Lainnya
-                </h2>
-                <p class="text-base text-secondary">Pilih mobil yang kamu suka</p>
-            </header>
+    <section class="py-12 bg-gray-50">
+        <div class="container px-4 mx-auto">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">Pilihan Mobil Lainnya</h2>
+                <div class="flex justify-center mt-2">
+                    <div class="w-16 h-1 bg-red-500 rounded-full"></div>
+                </div>
+                <p class="mt-2 text-gray-600">Pilih mobil yang kamu suka</p>
+            </div>
 
-            <!-- Cars -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-[29px]">
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                 @foreach ($similiarItems as $similiarItem)
-                    <!-- Card -->
-                    <div class="card-popular">
-                        <div>
-                            <h5 class="text-lg text-dark font-bold mb-[2px]">
-                                {{ $similiarItem->name }}
-                            </h5>
-                            <p class="text-sm font-normal text-secondary">
-                                {{ $similiarItem->type ? $similiarItem->type->name : '-' }}
-                            </p>
+                    <div class="p-6 transition duration-300 bg-white shadow-sm rounded-xl hover:shadow-md">
+                        <div class="relative mb-4">
+                            <img src="{{ $similiarItem->thumbnail }}" class="object-cover w-full h-48 mb-4 rounded-lg"
+                                alt="{{ $similiarItem->name }}">
                             <a href="{{ route('front.detail', $similiarItem->slug) }}" class="absolute inset-0"></a>
                         </div>
-                        <img src="{{ $similiarItem->thumbnail }}" class="rounded-[18px] min-w-[216px] w-full h-[150px]"
-                            alt="">
-                        <div class="flex items-center justify-between gap-1">
-                            <!-- Price -->
-                            <p class="text-sm font-normal text-secondary">
-                                <span
-                                    class="text-base font-bold text-primary">Rp{{ number_format($similiarItem->price, 0, ',', '.') }}</span>/hari
-                            </p>
-                            <!-- Rating -->
-                            <p class="text-dark text-xs font-semibold flex items-center gap-[2px]">
-                                ({{ $similiarItem->star }}/5)
-                                <img src="/svgs/ic-star.svg" alt="">
-                            </p>
+                        <h3 class="mb-1 text-lg font-bold text-gray-900">{{ $similiarItem->name }}</h3>
+                        <p class="mb-3 text-gray-600">{{ $similiarItem->type ? $similiarItem->type->name : '-' }}</p>
+
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-lg font-bold text-red-500">
+                                    Rp{{ number_format($similiarItem->price, 0, ',', '.') }}
+                                </p>
+                                <p class="text-sm text-gray-600">/hari</p>
+                            </div>
+                            <div class="flex items-center text-yellow-400">
+                                <span class="mr-1 font-medium text-gray-900">{{ $similiarItem->star }}</span>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                    </path>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                 @endforeach
+            </div>
+        </div>
+    </section>
+
+
+    {{-- FAQ Section --}}
+    <section class="py-20 bg-white">
+        <div class="container px-4 mx-auto">
+            <div class="max-w-3xl mx-auto mb-16 text-center">
+                <span
+                    class="inline-block px-3 py-1 mb-4 text-sm font-semibold text-red-600 bg-red-100 rounded-full">FAQ</span>
+                <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Pertanyaan Umum</h2>
+                <div class="mx-auto mt-4 h-1.5 w-20 bg-gradient-to-r from-red-500 to-red-300 rounded-full"></div>
+                <p class="mt-6 text-lg text-gray-600">
+                    Temukan jawaban untuk pertanyaan yang sering diajukan tentang layanan rental kami.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-4">
+                @foreach ($faqs as $faq)
+                    <div x-data="{ open: false }"
+                        class="overflow-hidden transition-all duration-300 border border-gray-200 rounded-xl hover:border-red-300">
+                        <button @click="open = !open" class="flex items-center justify-between w-full p-6 text-left">
+                            <h3 class="text-lg font-semibold text-gray-900">{{ $faq->question }}</h3>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform duration-300"
+                                :class="open ? 'transform rotate-180' : ''" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div x-show="open" x-collapse class="px-6 pb-6 -mt-2 text-gray-600">
+                            {!! $faq->answer !!}
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <div class="mt-12 text-center">
+                <p class="text-gray-600">Masih ada pertanyaan?</p>
+                <a href="{{ route('front.catalogue') }}"
+                    class="inline-flex items-center mt-4 font-medium text-red-600 hover:text-red-700">
+                    Hubungi Kami
+                    <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
             </div>
         </div>
     </section>
@@ -219,7 +250,4 @@
             }
         }).mount('#gallery')
     </script>
-
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
-        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </x-front-layout>
