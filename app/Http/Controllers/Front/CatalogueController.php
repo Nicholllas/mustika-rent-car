@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Front;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 class CatalogueController extends Controller
 {
     public function index()
     {
         $brands = ['Toyota', 'Honda', 'Mitsubishi', 'Suzuki', 'Isuzu', 'Daihatsu'];
-        $types = ['Bus', 'Electric Vehicles'];
+        $types = ['Bus', 'EV'];
 
         $data = [];
 

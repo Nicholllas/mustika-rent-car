@@ -73,7 +73,6 @@
     </section>
 
     <!-- Brand Sections -->
-    <!-- Brand Sections -->
     @php
         $brands = [
             'Toyota' => [
@@ -100,7 +99,7 @@
                 'items' => $isuzu ?? [],
                 'paginated' => $isuzu_paginated ?? false,
             ],
-            'Electric Vehicles' => [
+            'EV' => [
                 'items' => $ev ?? [],
                 'paginated' => $ev_paginated ?? false,
             ],

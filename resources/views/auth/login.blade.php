@@ -99,18 +99,12 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-3 mt-6">
-                        <a href="#"
-                            class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50">
+                    <div class="mt-6">
+                        <a href="{{ route('auth.google') }}"
+                            class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50">
                             <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-5 h-5 mr-2"
                                 alt="Google">
                             Google
-                        </a>
-                        <a href="#"
-                            class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50">
-                            <img src="https://www.svgrepo.com/show/512317/github-142.svg" class="w-5 h-5 mr-2"
-                                alt="GitHub">
-                            GitHub
                         </a>
                     </div>
                 </div>

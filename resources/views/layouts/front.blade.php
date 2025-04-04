@@ -51,6 +51,8 @@
                             class="font-medium text-gray-900 transition duration-300 hover:text-red-500">Profil</a>
                         <a href="{{ route('front.catalogue') }}"
                             class="font-medium text-gray-900 transition duration-300 hover:text-red-500">Katalog</a>
+                        <a href="{{ route('front.contact') }}"
+                            class="font-medium text-gray-900 transition duration-300 hover:text-red-500">Kontak</a>
                     </div>
 
                     @auth
@@ -125,7 +127,8 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{{ url('js/faqs.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.13.5/dist/cdn.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- Initialize AOS -->

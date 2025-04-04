@@ -15,7 +15,9 @@ export default defineConfig({
     server: {
         strictPort: true,
         hmr: {
-            host: process.env.APP_URL ? new URL(process.env.APP_URL).hostname : "localhost",
+            host: process.env.APP_URL
+                ? new URL(process.env.APP_URL).hostname
+                : "localhost",
         },
     },
     build: {

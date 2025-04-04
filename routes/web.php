@@ -1,20 +1,22 @@
 <?php
-
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Front\DetailController;
+use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\LandingController;
 use App\Http\Controllers\Front\PaymentController;
+use App\Http\Controllers\Front\ProfileController;
 use App\Http\Controllers\Front\CheckoutController;
+use App\Http\Controllers\Front\CatalogueController;
+use App\Http\Controllers\Admin\FAQController as AdminFAQController;
 use App\Http\Controllers\Admin\ItemController as AdminItemController;
 use App\Http\Controllers\Admin\TypeController as AdminTypeController;
 use App\Http\Controllers\Admin\BrandController as AdminBrandController;
 use App\Http\Controllers\Admin\BookingController as AdminBookingController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\VariantController as AdminVariantController;
-use App\Http\Controllers\Admin\FAQController as AdminFAQController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\PromotionController as AdminPromotionController;
-use App\Http\Controllers\Front\CatalogueController;
-use App\Http\Controllers\Front\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +32,8 @@ use App\Http\Controllers\Front\ProfileController;
 Route::name('front.')->group(function (){
     Route::get('/', [LandingController::class, 'index'])->name('index');
     Route::get('/catalogue', [CatalogueController::class, 'index'])->name('catalogue');
-    Route::get('/catalogue/brand/{brand}', [CatalogueController::class, 'brand'])->name('catalogue.brand');
-    Route::get('/catalogue/type/{type}', [CatalogueController::class, 'type'])->name('catalogue.type');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
     Route::get('/detail/{slug}', [DetailController::class, 'index'])->name('detail');
     Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 
@@ -59,8 +60,10 @@ Route::prefix('admin')->name('admin.')->middleware([
     Route::resource('items', AdminItemController::class);
     Route::resource('bookings', AdminBookingController::class);
     Route::resource('promotions', AdminPromotionController::class);
+});
 
-
-
-
+// google auth
+Route::controller(GoogleController::class)->group(function () {
+Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+Route::get('auth/google/callback', 'handleGoogleCallback');
 });

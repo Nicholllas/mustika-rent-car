@@ -76,34 +76,6 @@
                         </button>
                     </div>
                 </form>
-
-                <div class="mt-6">
-                    <div class="relative">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-300"></div>
-                        </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-2 text-gray-500 bg-white">
-                                Atau daftar dengan
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-3 mt-6">
-                        <a href="#"
-                            class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50">
-                            <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-5 h-5 mr-2"
-                                alt="Google">
-                            Google
-                        </a>
-                        <a href="#"
-                            class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50">
-                            <img src="https://www.svgrepo.com/show/512317/github-142.svg" class="w-5 h-5 mr-2"
-                                alt="GitHub">
-                            GitHub
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
